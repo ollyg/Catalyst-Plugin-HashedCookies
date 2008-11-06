@@ -1,0 +1,36 @@
+Revision history for Catalyst-Plugin-HashedCookies
+
+1.00    Fri Mar 21 11:47:00 GMT 2008
+        - Switch from CGI::Cookie to CGI::Simple::Cookie to follow Catalyst
+        - Bump version to 1.00, it's been in production for long enough :)
+
+0.05    Tue May  2 13:03:32 BST 2006
+        - Added a test for the new _hashedcookies_* check code
+
+0.04    Tue May  2 10:38:05 BST 2006
+        - Silly typo in POD, but was worth correcting to avoid confusion
+
+0.03    Sun Apr 30 20:59:06 BST 2006
+        - Refactored _hashedcookies_* check code because it was very broken
+        - Test support App scrubbed in favour of smarter, simpler alternative
+        - Tests restructured and rewritten to favour new Catalyst version 5.6x
+        - Moved POD to the bottom of HashedCookies.pm
+        - Updated License and Copyright
+
+0.02    Mon Aug 22 16:28:31 BST 2005
+        - Lots of tweaks to the POD; a few bugs and a few clarifications.
+        - Small fixup to config parameter checking code.
+        - Ran the source through perltidy.
+        - Refactored the implementation of my Catalyst::Request extensions, so
+          that (hopefully) cpan2rpm and the PAUSE indexer don't think I'm
+          working on that module.
+        - setup() now die()s rather than croak()s.
+        - finalize_cookies() now sets $c->error rather than die()ing.
+        - Changed dependencies to omit those in Perl core
+        - Added 133 tests.
+          "Code has bugs. Tests are code. Ergo tests have bugs."
+          Please report any broken tests via rt.cpan.org
+
+0.01    Sat Aug 20 17:14:23 BST 2005
+        - First version, released on an unsuspecting world.
+
