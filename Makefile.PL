@@ -13,6 +13,6 @@ requires    'Digest::HMAC_MD5' => 0;
 requires    'CGI::Simple::Cookie' => 0;
 
 test_requires  'Test::More' => 0;
-test_requires  'Catalyst::Test' => 0;
+test_requires  'Catalyst::Runtime' => '5.70';
 
 WriteAll;
