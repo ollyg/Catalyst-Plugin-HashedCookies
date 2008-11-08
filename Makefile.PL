@@ -1,22 +1,17 @@
-use strict;
-use warnings;
-use ExtUtils::MakeMaker;
+use inc::Module::Install 0.67;
+perl_version '5.008001';
+  
+name        'Catalyst-Plugin-HashedCookies';
+all_from    'lib/Catalyst/Plugin/HashedCookies.pm';
 
-WriteMakefile(
-    NAME                => 'Catalyst::Plugin::HashedCookies',
-    AUTHOR              => 'Oliver Gorwits <oliver.gorwits@oucs.ox.ac.uk>',
-    VERSION_FROM        => 'lib/Catalyst/Plugin/HashedCookies.pm',
-    ABSTRACT_FROM       => 'lib/Catalyst/Plugin/HashedCookies.pm',
-    PL_FILES            => {},
-    PREREQ_PM => {
-        'Catalyst' => '5.7000',
-        'Class::Accessor::Fast' => 0,
-        'Tie::IxHash' => 0,
-        'NEXT' => 0,
-        'Digest::HMAC_SHA1' => 0,
-        'Digest::HMAC_MD5' => 0,
-    },
-    LICENSE             => 'GPL',
-    dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean               => { FILES => 'Catalyst-Plugin-HashedCookies-*' },
-);
+requires    'Catalyst::Runtime' => '5.70';
+requires    'Class::Accessor::Fast' => 0;
+requires    'Tie::IxHash' => 0;
+requires    'NEXT' => 0;
+requires    'Digest::HMAC_SHA1' => 0;
+requires    'Digest::HMAC_MD5' => 0;
+requires    'CGI::Simple::Cookie' => 0;
+
+test_requires  'Test::More' => 0;
+
+WriteAll;

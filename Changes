@@ -1,5 +1,9 @@
 Revision history for Catalyst-Plugin-HashedCookies
 
+1.01    Sat Nov 08 14:47:00 GMT 2008
+        - switch to Module::Install and tidy dist
+        - added examples
+
 1.00    Fri Mar 21 11:47:00 GMT 2008
         - Switch from CGI::Cookie to CGI::Simple::Cookie to follow Catalyst
         - Bump version to 1.00, it's been in production for long enough :)

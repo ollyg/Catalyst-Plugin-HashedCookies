@@ -10,7 +10,9 @@ use CGI::Simple::Cookie;
 use Digest::HMAC_MD5;
 use Digest::HMAC_SHA1;
 use Class::Accessor::Fast;
-our $VERSION = 1.00;
+
+our $VERSION = '1.01';
+$VERSION = eval $VERSION; # numify for warning-free dev releases
 
 # apparently this should be done by subclassing Catalyst::Request and using
 # response_class, but I'm suspicious that that process isn't tolerant to
@@ -218,8 +220,7 @@ Catalyst::Plugin::HashedCookies - Tamper-resistant HTTP Cookies
 
 =head1 VERSION
 
-This document refers to version 1.00 of Catalyst::Plugin::HashedCookies,
-released Friday March 21, 2008.
+This document refers to version 1.01 of Catalyst::Plugin::HashedCookies
 
 =head1 SYNOPSIS
 
@@ -390,19 +391,10 @@ All the helpful people in #catalyst.
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright (c) The University of Oxford 2008. All Rights Reserved.
+Copyright (c) The University of Oxford 2008.
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of version 2 of the GNU General Public License as published by the
-Free Software Foundation.
-
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
-St, Fifth Floor, Boston, MA 02110-1301 USA
+This library is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
 
 =cut
 
