@@ -11,7 +11,7 @@ use Digest::HMAC_MD5;
 use Digest::HMAC_SHA1;
 use Class::Accessor::Fast;
 
-our $VERSION = '1.01';
+our $VERSION = '1.02';
 $VERSION = eval $VERSION; # numify for warning-free dev releases
 
 # apparently this should be done by subclassing Catalyst::Request and using
@@ -220,7 +220,7 @@ Catalyst::Plugin::HashedCookies - Tamper-resistant HTTP Cookies
 
 =head1 VERSION
 
-This document refers to version 1.01 of Catalyst::Plugin::HashedCookies
+This document refers to version 1.02 of Catalyst::Plugin::HashedCookies
 
 =head1 SYNOPSIS
 

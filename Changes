@@ -1,5 +1,8 @@
 Revision history for Catalyst-Plugin-HashedCookies
 
+1.02    Fri Dec 26 21:36:00 GMT 2008
+        - Fix for my misuse of HTTP::Headers::Util in tests
+
 1.01    Sat Nov 08 14:47:00 GMT 2008
         - switch to Module::Install and tidy dist
         - added examples

@@ -1,4 +1,4 @@
-#!perl
+#!/usr/bin/perl
 
 use strict;
 use warnings;
@@ -13,7 +13,7 @@ require 'do_request.pl';
 # no need for a die() here because Cat will do that for us
 BEGIN { use_ok('Catalyst::Test', ('PluginTestApp')); }
 
-use HTTP::Headers::Util 'split_header_words';
+use HTTP::Headers::Util;
 
 # returned cookies should look like this -- see PluginTestApp.pm
 my $expected = { 
@@ -41,11 +41,17 @@ my $expected = {
     for my $url (qw( /Catalyst/Cool /CoolCat /CoolCat/Catalyst /Cool/CoolCat )) {
 
         my (undef, $response, undef) = &do_request( $url );
-
         my $cookies = {};
 
-        for my $cookie ( split_header_words( $response->header('Set-Cookie') ) ) {
-            $cookies->{ $cookie->[0] } = $cookie;
+        if ($HTTP::Headers::Util::VERSION >= 5.817) {
+            for my $cookie ( HTTP::Headers::Util::_split_header_words( $response->header('Set-Cookie') ) ) {
+                $cookies->{ $cookie->[0] } = $cookie;
+            }
+        }
+        else {
+            for my $cookie ( HTTP::Headers::Util::split_header_words( $response->header('Set-Cookie') ) ) {
+                $cookies->{ $cookie->[0] } = $cookie;
+            }
         }
 
         is_deeply( $cookies, { map {$_ => $expected->{$_}} grep {$_} split '/', $url },
