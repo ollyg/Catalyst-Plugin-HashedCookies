@@ -3,7 +3,7 @@ package Catalyst::Plugin::HashedCookies;
 use strict;
 use warnings FATAL => 'all';
 
-use NEXT;
+use MRO::Compat;
 use Symbol;
 use Tie::IxHash;
 use CGI::Simple::Cookie;
@@ -11,7 +11,7 @@ use Digest::HMAC_MD5;
 use Digest::HMAC_SHA1;
 use Class::Accessor::Fast;
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 $VERSION = eval $VERSION; # numify for warning-free dev releases
 
 # apparently this should be done by subclassing Catalyst::Request and using
@@ -55,14 +55,14 @@ sub setup {
     defined $self->config->{hashedcookies}->{key}
       or die '"key" is a required configuration parameter to '. __PACKAGE__;
 
-    return $self->NEXT::setup(@_);
+    return $self->next::method(@_);
 }
 
 
 # remove and check hash in Cookie Values
 sub prepare_cookies {
     my $c = shift;
-    $c->NEXT::prepare_cookies(@_);
+    $c->next::method(@_);
     $c->request->validhashedcookies(   {} );
     $c->request->invalidhashedcookies( {} );
 
@@ -158,7 +158,7 @@ sub finalize {
         }
     }
 
-    $c->NEXT::finalize(@_);
+    $c->next::method(@_);
     return $c;
 }
 
@@ -170,7 +170,7 @@ sub finalize_cookies {
     if ($c->response->status =~ m/^5\d\d/) {
         $c->log->debug('HashedCookies finalize_cookies hook aborted due to 5xx error status')
             if $c->debug;
-        $c->NEXT::finalize_cookies(@_);
+        $c->next::method(@_);
         return $c;
     }
 
@@ -209,7 +209,7 @@ sub finalize_cookies {
         $hmac->reset;
     }
 
-    $c->NEXT::finalize_cookies(@_);
+    $c->next::method(@_);
     return $c;
 }
 
@@ -220,7 +220,7 @@ Catalyst::Plugin::HashedCookies - Tamper-resistant HTTP Cookies
 
 =head1 VERSION
 
-This document refers to version 1.02 of Catalyst::Plugin::HashedCookies
+This document refers to version 1.03 of Catalyst::Plugin::HashedCookies
 
 =head1 SYNOPSIS
 

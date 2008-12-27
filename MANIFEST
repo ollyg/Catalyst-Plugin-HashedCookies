@@ -18,9 +18,11 @@ README
 t/00-load.t
 t/10-initialize.t
 t/21-setup.t
+t/21a-setup.t
 t/22-setup.t
 t/23-setup.t
 t/24-setup.t
+t/24a-setup.t
 t/25-setup.t
 t/30-restricted.t
 t/50-installed_extensions.t

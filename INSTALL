@@ -1,13 +1,3 @@
-This module requires the following other Perl modules:
-
-    Catalyst
-    Class::Accessor::Fast
-    Tie::IxHash
-    NEXT
-    CGI::Simple::Cookie
-    Digest::HMAC_SHA1
-    Digest::HMAC_MD5
-
 To install this module, run the following commands:
 
     perl Makefile.PL
