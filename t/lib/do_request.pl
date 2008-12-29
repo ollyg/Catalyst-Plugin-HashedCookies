@@ -16,15 +16,15 @@ sub do_request {
         'Response successful (2xx)' );
     is( $response->content_type, 'text/plain',
         'Response Content-Type' );
-    like( $response->content, qr/bless\( .* 'Catalyst::Request' \)/s,
-        'Response content is a frozen (serialized) Catalyst::Request' );
+    like( $response->content, qr/bless\( .* 'Catalyst::Request::HashedCookies' \)/s,
+        'Response content is a frozen (serialized) Catalyst::Request::HashedCookies' );
     
     is( $response->header('X-Catalyst-Plugins'), 'Catalyst::Plugin::HashedCookies',
         'HashedCookies plugin is loaded' );
     
     ok( eval '$creq = ' . $response->content,
-        'Thaw (unserialize) Catalyst::Request' );
-    isa_ok( $creq, 'Catalyst::Request',
+        'Thaw (unserialize) Catalyst::Request::HashedCookies' );
+    isa_ok( $creq, 'Catalyst::Request::HashedCookies',
         'Request object is now thawed,' );
 
     if (wantarray()) {

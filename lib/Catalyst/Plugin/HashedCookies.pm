@@ -9,40 +9,44 @@ use Tie::IxHash;
 use CGI::Simple::Cookie;
 use Digest::HMAC_MD5;
 use Digest::HMAC_SHA1;
-use Class::Accessor::Fast;
 
-our $VERSION = '1.03';
+our $VERSION = '1.04';
 $VERSION = eval $VERSION; # numify for warning-free dev releases
 
-# apparently this should be done by subclassing Catalyst::Request and using
-# response_class, but I'm suspicious that that process isn't tolerant to
-# multiple users.
+{
+    package Catalyst::Request::HashedCookies;
+    use base 'Catalyst::Request';
 
-*{Symbol::qualify_to_ref('validhashedcookies', 'Catalyst::Request')} =
-  Class::Accessor::Fast::make_accessor('Catalyst::Request', 'validhashedcookies');
-*{Symbol::qualify_to_ref('invalidhashedcookies', 'Catalyst::Request')} =
-  Class::Accessor::Fast::make_accessor('Catalyst::Request', 'invalidhashedcookies');
+    __PACKAGE__->mk_accessors(qw/validhashedcookies invalidhashedcookies/);
 
+    # reveal whether a hashed cookie passed its integrity check
+    sub valid_cookie {
+        my $self = shift;
+        my $name = shift;
 
-# reveal whether a hashed cookie passed its integrity check
-*{Symbol::qualify_to_ref('valid_cookie', 'Catalyst::Request')} = sub {
-    my $self = shift;
-    my $name = shift;
+        return exists $self->validhashedcookies->{$name};
+    }
 
-    return exists $self->validhashedcookies->{$name};
-};
+    # reveal whether a hashed cookie passed its integrity check
+    sub invalid_cookie {
+        my $self = shift;
+        my $name = shift;
 
-# reveal whether a hashed cookie passed its integrity check
-*{Symbol::qualify_to_ref('invalid_cookie', 'Catalyst::Request')} = sub {
-    my $self = shift;
-    my $name = shift;
-
-    return exists $self->invalidhashedcookies->{$name};
-};
-
+        return exists $self->invalidhashedcookies->{$name};
+    }
+}
 
 sub setup {
     my $self = shift;
+
+    # fix request class - thanks once again to mst
+    if ($self->request_class eq 'Catalyst::Request') {
+        $self->request_class('Catalyst::Request::HashedCookies');
+    }
+    else {
+        die 'Please make a Request subclass for your application which '.
+            'isa Catalyst::Request::HashedCookies';
+    }
 
     $self->config->{hashedcookies}->{algorithm} ||= 'SHA1';
     ( $self->config->{hashedcookies}->{algorithm} =~ m/^(?:SHA1|MD5)$/ )
@@ -220,7 +224,7 @@ Catalyst::Plugin::HashedCookies - Tamper-resistant HTTP Cookies
 
 =head1 VERSION
 
-This document refers to version 1.03 of Catalyst::Plugin::HashedCookies
+This document refers to version 1.04 of Catalyst::Plugin::HashedCookies
 
 =head1 SYNOPSIS
 
@@ -350,6 +354,16 @@ handler will be triggered, and the response status code will be set to "500".
 You cannot trap such errors because they are raised after all the application
 code has run, but you will see the above error in your log file, and your
 Application will certainly halt so that Catalyst can display its error page.
+
+=item 'Please make a Request subclass for your application which isa Catalyst::Request::HashedCookies'
+
+In order to properly hook into Catalyst, you need a Class for the Catalyst
+Request object which isa C<Catalyst::Request::HashedCookies>. This error is
+thrown not if you are using C<Catalyst::Request> as the Class (this is
+detected and worked around), but instead some 3rd party Class. 
+
+It can happen, apparently, to C<Catalyst::Action::REST> users. Please check
+the Catalyst wiki for some examples on how to fix your application.
 
 =back
 
