@@ -10,7 +10,7 @@ use CGI::Simple::Cookie;
 use Digest::HMAC_MD5;
 use Digest::HMAC_SHA1;
 
-our $VERSION = '1.04';
+our $VERSION = '1.05';
 $VERSION = eval $VERSION; # numify for warning-free dev releases
 
 {
@@ -224,7 +224,7 @@ Catalyst::Plugin::HashedCookies - Tamper-resistant HTTP Cookies
 
 =head1 VERSION
 
-This document refers to version 1.04 of Catalyst::Plugin::HashedCookies
+This document refers to version 1.05 of Catalyst::Plugin::HashedCookies
 
 =head1 SYNOPSIS
 

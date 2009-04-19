@@ -1,6 +1,6 @@
 package Catalyst::Plugin::Loopback;
 
-use base qw/Catalyst::Base/;
+use base qw/Catalyst::Controller/;
 use Data::Dumper ();
 use Scalar::Util qw(weaken);
 

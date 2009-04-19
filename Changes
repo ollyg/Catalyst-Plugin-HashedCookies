@@ -1,5 +1,9 @@
 Revision history for Catalyst-Plugin-HashedCookies
 
+1.05    Sun Apr 19 15:30:00 GMT 2009
+        - Fix test suite to no longer use deprecated Catalyst::Base
+        - Tested under Catalyst 5.80
+
 1.04    Mon Dec 29 22:28:00 GMT 2008
         - Proper fix for Catamoose, actually use request_class properly
 
