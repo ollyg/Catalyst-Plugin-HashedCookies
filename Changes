@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+  * Do not skip finalize_cookies in 5xx situation (Nigel M., rt.cpan #64855)
+
 1.110230  2011-01-23 10:23:22 Europe/London
 
   * Convert to Dist::Zilla

@@ -168,13 +168,6 @@ sub finalize {
 sub finalize_cookies {
     my $c = shift;
 
-    if ($c->response->status =~ m/^5\d\d/) {
-        $c->log->debug('HashedCookies finalize_cookies hook aborted due to 5xx error status')
-            if $c->debug;
-        $c->next::method(@_);
-        return $c;
-    }
-
     my $hasher = 'Digest::HMAC_'. $c->config->{hashedcookies}->{algorithm};
     my $hmac   = $hasher->new( $c->config->{hashedcookies}->{key} );
 
