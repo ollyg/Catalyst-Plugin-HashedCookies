@@ -1,6 +1,6 @@
 package Catalyst::Plugin::HashedCookies;
 BEGIN {
-  $Catalyst::Plugin::HashedCookies::VERSION = '1.110230';
+  $Catalyst::Plugin::HashedCookies::VERSION = '1.110231';
 }
 
 use strict;
@@ -16,7 +16,7 @@ use Digest::HMAC_SHA1;
 {
     package Catalyst::Request::HashedCookies;
 BEGIN {
-  $Catalyst::Request::HashedCookies::VERSION = '1.110230';
+  $Catalyst::Request::HashedCookies::VERSION = '1.110231';
 }
     use base 'Catalyst::Request';
 
@@ -174,13 +174,6 @@ sub finalize {
 sub finalize_cookies {
     my $c = shift;
 
-    if ($c->response->status =~ m/^5\d\d/) {
-        $c->log->debug('HashedCookies finalize_cookies hook aborted due to 5xx error status')
-            if $c->debug;
-        $c->next::method(@_);
-        return $c;
-    }
-
     my $hasher = 'Digest::HMAC_'. $c->config->{hashedcookies}->{algorithm};
     my $hmac   = $hasher->new( $c->config->{hashedcookies}->{key} );
 
@@ -234,7 +227,7 @@ Catalyst::Plugin::HashedCookies - Tamper-resistant HTTP Cookies
 
 =head1 VERSION
 
-version 1.110230
+version 1.110231
 
 =head1 SYNOPSIS
 

@@ -32,4 +32,4 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Catalyst-Plugin-HashedCookies
   homepage: https://github.com/ollyg/Catalyst-Plugin-HashedCookies/wiki
   repository: git://github.com/ollyg/Catalyst-Plugin-HashedCookies.git
-version: 1.110230
+version: 1.110231

@@ -2,7 +2,7 @@ NAME
     Catalyst::Plugin::HashedCookies - Tamper-resistant HTTP Cookies
 
 VERSION
-    version 1.110230
+    version 1.110231
 
 SYNOPSIS
      use Catalyst qw/HashedCookies/;
