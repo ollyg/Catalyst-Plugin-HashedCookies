@@ -10,9 +10,6 @@ use CGI::Simple::Cookie;
 use Digest::HMAC_MD5;
 use Digest::HMAC_SHA1;
 
-our $VERSION = '1.05';
-$VERSION = eval $VERSION; # numify for warning-free dev releases
-
 {
     package Catalyst::Request::HashedCookies;
     use base 'Catalyst::Request';
@@ -217,14 +214,7 @@ sub finalize_cookies {
     return $c;
 }
 
-
-=head1 NAME
-
-Catalyst::Plugin::HashedCookies - Tamper-resistant HTTP Cookies
-
-=head1 VERSION
-
-This document refers to version 1.05 of Catalyst::Plugin::HashedCookies
+# ABSTRACT: Tamper-resistant HTTP Cookies
 
 =head1 SYNOPSIS
 
@@ -394,21 +384,6 @@ your bug as I make changes.
 L<Catalyst>, L<Digest::HMAC_SHA1>, L<Digest::HMAC_MD5>
 
 L<http://www.schneier.com/blog/archives/2005/08/new_cryptanalyt.html>
-
-=head1 AUTHOR
-
-Oliver Gorwits C<< <oliver.gorwits@oucs.ox.ac.uk> >>
-
-=head1 ACKNOWLEDGEMENTS
-
-All the helpful people in #catalyst.
-
-=head1 COPYRIGHT & LICENSE
-
-Copyright (c) The University of Oxford 2008.
-
-This library is free software; you can redistribute it and/or modify it under
-the same terms as Perl itself.
 
 =cut
 
