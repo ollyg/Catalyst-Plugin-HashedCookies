@@ -2,7 +2,7 @@ NAME
     Catalyst::Plugin::HashedCookies - Tamper-resistant HTTP Cookies
 
 VERSION
-    This document refers to version 1.05 of Catalyst::Plugin::HashedCookies
+    version 1.110230
 
 SYNOPSIS
      use Catalyst qw/HashedCookies/;
@@ -145,14 +145,11 @@ SEE ALSO
     <http://www.schneier.com/blog/archives/2005/08/new_cryptanalyt.html>
 
 AUTHOR
-    Oliver Gorwits "<oliver.gorwits@oucs.ox.ac.uk>"
+    Oliver Gorwits <oliver@cpan.org>
 
-ACKNOWLEDGEMENTS
-    All the helpful people in #catalyst.
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2011 by University of Oxford.
 
-COPYRIGHT & LICENSE
-    Copyright (c) The University of Oxford 2008.
-
-    This library is free software; you can redistribute it and/or modify it
-    under the same terms as Perl itself.
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 

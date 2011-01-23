@@ -1,18 +1,66 @@
-use inc::Module::Install 0.67;
-perl_version '5.008001';
-  
-name        'Catalyst-Plugin-HashedCookies';
-all_from    'lib/Catalyst/Plugin/HashedCookies.pm';
 
-requires    'Catalyst::Runtime' => '5.70';
-requires    'Tie::IxHash' => 0;
-requires    'Digest::HMAC_SHA1' => 0;
-requires    'Digest::HMAC_MD5' => 0;
-requires    'CGI::Simple::Cookie' => 0;
-requires    'MRO::Compat' => 0;
+use strict;
+use warnings;
 
-test_requires  'Test::More' => 0;
-test_requires  'Test::Pod' => 0;
-test_requires  'Test::Pod::Coverage' => 0;
 
-WriteAll;
+
+use ExtUtils::MakeMaker 6.31;
+
+
+
+my %WriteMakefileArgs = (
+  'ABSTRACT' => 'Tamper-resistant HTTP Cookies',
+  'AUTHOR' => 'Oliver Gorwits <oliver@cpan.org>',
+  'BUILD_REQUIRES' => {
+    'Catalyst' => '0',
+    'Catalyst::Controller' => '0',
+    'Data::Dumper' => '0',
+    'File::Spec::Functions' => '0',
+    'HTTP::Headers::Util' => '0',
+    'HTTP::Request::Common' => '0',
+    'Scalar::Util' => '0',
+    'Test::More' => '0'
+  },
+  'CONFIGURE_REQUIRES' => {
+    'ExtUtils::MakeMaker' => '6.31'
+  },
+  'DISTNAME' => 'Catalyst-Plugin-HashedCookies',
+  'EXE_FILES' => [],
+  'LICENSE' => 'perl',
+  'NAME' => 'Catalyst::Plugin::HashedCookies',
+  'PREREQ_PM' => {
+    'CGI::Simple::Cookie' => '0',
+    'Catalyst::Request' => '0',
+    'Digest::HMAC_MD5' => '0',
+    'Digest::HMAC_SHA1' => '0',
+    'MRO::Compat' => '0',
+    'Symbol' => '0',
+    'Tie::IxHash' => '0'
+  },
+  'VERSION' => '1.110230',
+  'test' => {
+    'TESTS' => 't/*.t'
+  }
+);
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
+

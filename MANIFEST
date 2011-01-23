@@ -1,20 +1,13 @@
 Changes
+LICENSE
+MANIFEST
+META.json
+META.yml
+Makefile.PL
+README
 examples/Controller.pm
 examples/MyApp.pm
-inc/Module/Install.pm
-inc/Module/Install/Base.pm
-inc/Module/Install/Can.pm
-inc/Module/Install/Fetch.pm
-inc/Module/Install/Makefile.pm
-inc/Module/Install/Metadata.pm
-inc/Module/Install/Win32.pm
-inc/Module/Install/WriteAll.pm
-INSTALL
 lib/Catalyst/Plugin/HashedCookies.pm
-Makefile.PL
-MANIFEST			This list of files
-META.yml
-README
 t/00-load.t
 t/10-initialize.t
 t/21-setup.t
@@ -31,7 +24,7 @@ t/70-algorithms.t
 t/80-response_hooks.t
 t/lib/BasicTestApp.pm
 t/lib/Catalyst/Plugin/Loopback.pm
-t/lib/do_request.pl
 t/lib/PluginTestApp.pm
+t/lib/do_request.pl
 t/pod-coverage.t
 t/pod.t

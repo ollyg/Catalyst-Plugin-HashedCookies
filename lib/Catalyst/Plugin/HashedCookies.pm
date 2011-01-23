@@ -1,4 +1,7 @@
 package Catalyst::Plugin::HashedCookies;
+BEGIN {
+  $Catalyst::Plugin::HashedCookies::VERSION = '1.110230';
+}
 
 use strict;
 use warnings FATAL => 'all';
@@ -10,11 +13,11 @@ use CGI::Simple::Cookie;
 use Digest::HMAC_MD5;
 use Digest::HMAC_SHA1;
 
-our $VERSION = '1.05';
-$VERSION = eval $VERSION; # numify for warning-free dev releases
-
 {
     package Catalyst::Request::HashedCookies;
+BEGIN {
+  $Catalyst::Request::HashedCookies::VERSION = '1.110230';
+}
     use base 'Catalyst::Request';
 
     __PACKAGE__->mk_accessors(qw/validhashedcookies invalidhashedcookies/);
@@ -217,6 +220,13 @@ sub finalize_cookies {
     return $c;
 }
 
+# ABSTRACT: Tamper-resistant HTTP Cookies
+
+
+1;
+
+__END__
+=pod
 
 =head1 NAME
 
@@ -224,7 +234,7 @@ Catalyst::Plugin::HashedCookies - Tamper-resistant HTTP Cookies
 
 =head1 VERSION
 
-This document refers to version 1.05 of Catalyst::Plugin::HashedCookies
+version 1.110230
 
 =head1 SYNOPSIS
 
@@ -397,19 +407,14 @@ L<http://www.schneier.com/blog/archives/2005/08/new_cryptanalyt.html>
 
 =head1 AUTHOR
 
-Oliver Gorwits C<< <oliver.gorwits@oucs.ox.ac.uk> >>
+Oliver Gorwits <oliver@cpan.org>
 
-=head1 ACKNOWLEDGEMENTS
+=head1 COPYRIGHT AND LICENSE
 
-All the helpful people in #catalyst.
+This software is copyright (c) 2011 by University of Oxford.
 
-=head1 COPYRIGHT & LICENSE
-
-Copyright (c) The University of Oxford 2008.
-
-This library is free software; you can redistribute it and/or modify it under
-the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
 
-1;
