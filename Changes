@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+  * Update test libraries for compatibility with Catalyst 5.81+
+
 1.110231  2011-01-23 10:27:44 Europe/London
 
   * Do not skip finalize_cookies in 5xx situation (Nigel M., rt.cpan #64855)
