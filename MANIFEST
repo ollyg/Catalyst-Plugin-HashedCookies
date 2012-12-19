@@ -23,8 +23,8 @@ t/60-request_hooks.t
 t/70-algorithms.t
 t/80-response_hooks.t
 t/lib/BasicTestApp.pm
-t/lib/Catalyst/Plugin/Loopback.pm
 t/lib/PluginTestApp.pm
+t/lib/PluginTestApp/Controller/Root.pm
 t/lib/do_request.pl
 t/pod-coverage.t
 t/pod.t
