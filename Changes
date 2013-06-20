@@ -1,3 +1,7 @@
+1.131710  2013-06-20 23:51:43 Europe/London
+
+  * Fix for bug in tests when there is more than one plugin loaded
+
 1.123540  2012-12-19 05:57:07 Europe/London
 
   * Update test libraries for compatibility with Catalyst 5.81+

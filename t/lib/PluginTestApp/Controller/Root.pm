@@ -52,7 +52,7 @@ sub end : Private {
 
     my $output = $dumper->Dump;
 
-    $c->response->header( 'X-Catalyst-Plugins' => $c->registered_plugins );
+    $c->response->header( 'X-Catalyst-Plugins' => [$c->registered_plugins] );
     $c->res->headers->content_type('text/plain');
     $c->res->output($output);
 

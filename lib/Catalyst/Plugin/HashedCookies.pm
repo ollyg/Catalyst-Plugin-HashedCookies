@@ -1,6 +1,6 @@
 package Catalyst::Plugin::HashedCookies;
 {
-  $Catalyst::Plugin::HashedCookies::VERSION = '1.123540';
+  $Catalyst::Plugin::HashedCookies::VERSION = '1.131710';
 }
 
 use strict;
@@ -16,7 +16,7 @@ use Digest::HMAC_SHA1;
 {
     package Catalyst::Request::HashedCookies;
 {
-  $Catalyst::Request::HashedCookies::VERSION = '1.123540';
+  $Catalyst::Request::HashedCookies::VERSION = '1.131710';
 }
     use base 'Catalyst::Request';
 
@@ -227,7 +227,7 @@ Catalyst::Plugin::HashedCookies - Tamper-resistant HTTP Cookies
 
 =head1 VERSION
 
-version 1.123540
+version 1.131710
 
 =head1 SYNOPSIS
 
@@ -404,7 +404,7 @@ Oliver Gorwits <oliver@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by University of Oxford.
+This software is copyright (c) 2013 by University of Oxford.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

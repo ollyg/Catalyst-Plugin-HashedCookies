@@ -19,7 +19,7 @@ sub do_request {
     like( $response->content, qr/bless\( .* 'Catalyst::Request::HashedCookies' \)/s,
         'Response content is a frozen (serialized) Catalyst::Request::HashedCookies' );
     
-    is( $response->header('X-Catalyst-Plugins'), 'Catalyst::Plugin::HashedCookies',
+    like( $response->header('X-Catalyst-Plugins'), qr/Catalyst::Plugin::HashedCookies/,
         'HashedCookies plugin is loaded' );
     
     ok( eval '$creq = ' . $response->content,
